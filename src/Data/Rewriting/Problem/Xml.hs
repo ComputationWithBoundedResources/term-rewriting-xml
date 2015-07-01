@@ -31,7 +31,7 @@ xmlBSToProblem xmlbs = let
 
 xmlToStrategy :: UNode String -> T.Strategy
 xmlToStrategy xmlStrategy =
-  case getText $ head $ eChildren xmlStrategy of
+  case concatMap getText $ eChildren xmlStrategy of
     "INNERMOST" -> T.Innermost
     "OUTERMOST" -> T.Outermost
     "FULL"      -> T.Full
@@ -40,7 +40,7 @@ xmlToStrategy xmlStrategy =
 
 xmlToStartTerms :: Maybe (UNode String) -> T.StartTerms
 xmlToStartTerms xmlStartTerms =
-  maybe T.BasicTerms getStartTerm xmlStartTerms
+  maybe T.AllTerms getStartTerm xmlStartTerms
   where
     getStartTerm xst = case eName $ head $ eChildren xst of
       "constructor-based" -> T.BasicTerms

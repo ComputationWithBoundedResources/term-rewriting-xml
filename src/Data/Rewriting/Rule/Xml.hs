@@ -51,5 +51,5 @@ xmlToSymbol :: UNode String -> (String,Int)
 xmlToSymbol xmlSym = (name,arity)
   where
     getText (Text t) = t
-    name = getText $ head $ eChildren $ fromJust $ findChild "name" xmlSym
-    arity = read $ getText $ head $ eChildren $ fromJust $ findChild "arity" xmlSym
+    name = concatMap getText $ eChildren $ fromJust $ findChild "name" xmlSym
+    arity = read $ concatMap getText $ eChildren $ fromJust $ findChild "arity" xmlSym

@@ -32,14 +32,14 @@ xmlToTerm' xmlTerm
 xmlToFunction :: UNode String -> T.Term String String
 xmlToFunction xmlFunapp = T.Fun name args
   where
-    name = getName $ head $ eChildren $ fromJust $ findChild "name" xmlFunapp
+    name = concatMap getText $ eChildren $ fromJust $ findChild "name" xmlFunapp
     xmlArgs = map getArgTerm $ findChildren "arg" xmlFunapp
     args = map xmlToTerm' xmlArgs
-    getName (Text t) = t
+    getText (Text t) = t
     getArgTerm = head.eChildren
 
 xmlToVariable :: UNode String -> T.Term String String
 xmlToVariable xmlVar = T.Var name
   where
-    name = getName $ head $ eChildren xmlVar
-    getName (Text t) = t 
+    name = concatMap getText $ eChildren xmlVar
+    getText (Text t) = t 
