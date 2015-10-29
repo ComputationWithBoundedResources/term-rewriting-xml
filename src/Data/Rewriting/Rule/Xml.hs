@@ -12,8 +12,6 @@ import Data.List (union)
 
 import qualified Data.Rewriting.Rule.Type as R
 
-
-
 import Data.Rewriting.Term.Xml
 
 xmlToRule :: UNode String -> (R.Rule String String, [String])
@@ -50,6 +48,7 @@ xmlToSignature xmlSig = map xmlToSymbol xmlSyms
 xmlToSymbol :: UNode String -> (String,Int)
 xmlToSymbol xmlSym = (name,arity)
   where
-    getText (Text t) = t
-    name = concatMap getText $ eChildren $ fromJust $ findChild "name" xmlSym
-    arity = read $ concatMap getText $ eChildren $ fromJust $ findChild "arity" xmlSym
+    unText (Text t)  = t
+    unText Element{} = error "Data.Rewriting.Rule.Xml.xmlToSymbol: something is wrong."
+    name = concatMap unText $ eChildren $ fromJust $ findChild "name" xmlSym
+    arity = read $ concatMap unText $ eChildren $ fromJust $ findChild "arity" xmlSym

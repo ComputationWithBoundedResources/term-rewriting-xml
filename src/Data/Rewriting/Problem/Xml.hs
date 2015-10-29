@@ -7,7 +7,6 @@ module Data.Rewriting.Problem.Xml
 )  where
 
 import Text.XML.Expat.Tree
-import Text.XML.Expat.Format
 import Text.XML.Expat.Proc
 
 import qualified Data.ByteString.Lazy as L
@@ -31,12 +30,14 @@ xmlBSToProblem xmlbs = let
 
 xmlToStrategy :: UNode String -> T.Strategy
 xmlToStrategy xmlStrategy =
-  case concatMap getText $ eChildren xmlStrategy of
+  case concatMap unText $ eChildren xmlStrategy of
     "INNERMOST" -> T.Innermost
     "OUTERMOST" -> T.Outermost
     "FULL"      -> T.Full
+    s           -> error $ "Data.Rewriting.Problem.Xml.xmlToStrategy: unexpcted strategy: " ++ s
   where
-    getText (Text t) = t
+    unText (Text t) = t
+    unText _        = error $ "Data.Rewriting.Problem.Xml.xmlToStrategy: something is wrong."
 
 xmlToStartTerms :: Maybe (UNode String) -> T.StartTerms
 xmlToStartTerms xmlStartTerms =
@@ -45,7 +46,7 @@ xmlToStartTerms xmlStartTerms =
     getStartTerm xst = case eName $ head $ eChildren xst of
       "constructor-based" -> T.BasicTerms
       "full"              -> T.AllTerms
-      "automaton"         -> error "Data.rewriting.Problem.ParseXml.xmlToStartTerms: automaton start-terms not supported"
+      s                   -> error $ "Data.rewriting.Problem.ParseXml.xmlToStartTerms: unexpected start terms:" ++ s
 
 
 xmlToProblem :: UNode String -> T.Problem String String
@@ -65,5 +66,4 @@ xmlToProblem xmlProblem = let
                , T.symbols = symbols
                , T.theory = Nothing -- needs to be implemented?
                , T.comment = Nothing}
-   
 
