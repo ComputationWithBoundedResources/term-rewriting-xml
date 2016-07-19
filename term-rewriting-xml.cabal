@@ -81,7 +81,7 @@ Test-suite testsuite
     Main.hs
   build-depends:
     term-rewriting >=0.2  && <0.3 ,
-    term-rewriting-xml == 0.1.0.0 ,
+    term-rewriting-xml == 0.1.0.* ,
     QuickCheck                    ,
     directory                     ,
     filepath                      ,
