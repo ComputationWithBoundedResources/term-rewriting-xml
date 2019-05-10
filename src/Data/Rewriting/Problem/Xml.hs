@@ -1,5 +1,4 @@
 -- | Xml parser for problem type
-
 module Data.Rewriting.Problem.Xml
 ( xmlFileToProblem
 , xmlBSToProblem
@@ -64,6 +63,7 @@ xmlToProblem xmlProblem = let
                , T.rules = rules
                , T.variables = variables
                , T.symbols = symbols
-               , T.theory = Nothing -- needs to be implemented?
+               , T.signature = Nothing
+               , T.theory = Nothing
                , T.comment = Nothing}
 

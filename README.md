@@ -1,5 +1,8 @@
 # term-rewriting-xml
-XML parser for term-rewriting library
+XML parser for term-rewriting library.
+
+Designed to be compatible for the complexity cataegories of the termination competition.
+
 
 ## Testing
 
@@ -15,5 +18,4 @@ cabal test testsuite --test-option="number-of-tests" --test-option="xml-folder" 
 - `number-of-tests`: number of tests QuickCheck runs
 - `xml-folder`: top-level folder with only `.xml` files. (searched recursively for all files)
 - `trs-folder`: top level folder with same structure as `xml-folder` only containing `.trs` files
-
 
