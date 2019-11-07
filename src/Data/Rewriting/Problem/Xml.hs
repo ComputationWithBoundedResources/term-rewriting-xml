@@ -5,15 +5,15 @@ module Data.Rewriting.Problem.Xml
 --, xmlToProblem
 )  where
 
-import Text.XML.Expat.Tree
-import Text.XML.Expat.Proc
+import           Text.XML.Expat.Proc
+import           Text.XML.Expat.Tree
 
-import qualified Data.ByteString.Lazy as L
-import Data.Maybe
+import qualified Data.ByteString.Lazy        as L
+import           Data.Maybe
 
 import qualified Data.Rewriting.Problem.Type as T
 
-import Data.Rewriting.Rule.Xml
+import           Data.Rewriting.Rule.Xml
 
 xmlFileToProblem :: FilePath -> IO (T.Problem String String)
 xmlFileToProblem filename =
@@ -24,7 +24,7 @@ xmlBSToProblem xmlbs = let
   (xmlData, mErr) = parse defaultParseOptions xmlbs -- :: (UNode String, Maybe XMLParseError)
   problem = xmlToProblem xmlData
   in case mErr of
-      Nothing -> problem
+      Nothing  -> problem
       Just err -> error $ "XML parse failed: "++show err
 
 xmlToStrategy :: UNode String -> T.Strategy
