@@ -21,7 +21,8 @@ library
     base >= 4.7 && < 5,
     bytestring,
     term-rewriting,
-    hexpat
+    hexpat,
+    word8
   default-language:
     Haskell2010
   ghc-options:
