@@ -35,7 +35,7 @@ xmlToFunction xmlFunapp = T.Fun name args
     xmlArgs = map getArgTerm $ findChildren "arg" xmlFunapp
     args = map xmlToTerm' xmlArgs
     unText (Text t) = t
-    unText _        = error "Data.Rewriting.Term.Xml.xmlToFunction: somehting is wrong."
+    unText _        = error "Data.Rewriting.Term.Xml.xmlToFunction: something is wrong."
     getArgTerm = head.eChildren
 
 xmlToVariable :: UNode String -> T.Term String String
@@ -43,4 +43,4 @@ xmlToVariable xmlVar = T.Var name
   where
     name = concatMap unText $ eChildren xmlVar
     unText (Text t) = t
-    unText _        = error "Data.Rewriting.Term.Xml.xmlToVariabl: somehting is wrong."
+    unText _        = error "Data.Rewriting.Term.Xml.xmlToVariabl: something is wrong."
