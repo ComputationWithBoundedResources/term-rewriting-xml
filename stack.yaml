@@ -1,0 +1,8 @@
+flags: {}
+packages:
+- '.'
+- ../term-rewriting/
+- ../union-find-array/
+extra-deps: []
+# resolver: ghc-8.4.1
+resolver: lts-13.20 # ghc-8.6.5
