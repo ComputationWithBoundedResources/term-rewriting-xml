@@ -10,6 +10,7 @@ import           Text.XML.Expat.Tree
 
 import qualified Data.ByteString.Lazy        as L
 import           Data.Maybe
+import           Data.Word8
 
 import qualified Data.Rewriting.Problem.Type as T
 
@@ -17,7 +18,7 @@ import           Data.Rewriting.Rule.Xml
 
 xmlFileToProblem :: FilePath -> IO (T.Problem String String)
 xmlFileToProblem filename =
-  xmlBSToProblem `fmap` L.readFile filename
+  xmlBSToProblem . L.filter (/= _lf) <$> L.readFile filename
 
 xmlBSToProblem :: L.ByteString -> T.Problem String String
 xmlBSToProblem xmlbs = let
