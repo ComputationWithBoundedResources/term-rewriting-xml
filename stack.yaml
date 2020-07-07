@@ -1,8 +1,7 @@
 flags: {}
 packages:
-- '.'
-- ../term-rewriting/
-- ../union-find-array/
-extra-deps: []
-# resolver: ghc-8.4.1
-resolver: lts-13.20 # ghc-8.6.5
+- .
+extra-deps:
+ - term-rewriting-0.4.0.2@sha256:5412f6aa29c5756634ee30e8df923c83ab9f012a4b8797c460af3d7078466764,2740
+ - union-find-array-0.1.0.2@sha256:38c2dfbae3de48d8962f202ec5c4d6323ac767d6838b85e8d340c3608d6c0f21,1406
+resolver: lts-16.4
