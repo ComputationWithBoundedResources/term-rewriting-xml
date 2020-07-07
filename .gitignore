@@ -19,3 +19,4 @@ TAGS
 .stack-work
 dist/
 stack.yaml.lock
+dist-newstyle
