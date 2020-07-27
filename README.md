@@ -1,7 +1,7 @@
 # term-rewriting-xml
 XML parser for term-rewriting library.
 
-Designed to be compatible for the complexity cataegories of the termination competition.
+Designed to be compatible for the complexity categories of the termination competition.
 
 
 ## Testing
